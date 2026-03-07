@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#2e69ff",
+                "background-light": "#f5f6f8",
+                "background-dark": "#0f1523",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-card {
+            background: rgba(15, 21, 35, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative mx-auto max-w-md min-h-screen overflow-hidden pb-10">
+<!-- Background Decorative Elements -->
+<div class="absolute top-[-10%] left-[-10%] w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[20%] right-[-10%] w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+<!-- Header -->
+<div class="relative flex items-center p-6 pt-8 justify-between">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full glass-card text-slate-900 dark:text-slate-100 shadow-sm">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-2xl font-bold tracking-tight">Settings</h1>
+</div>
+</div>
+<div class="px-6 space-y-8 relative">
+<!-- Profile Section -->
+<section>
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Profile</h3>
+</div>
+<div class="glass-card rounded-xl overflow-hidden shadow-sm">
+<div class="flex items-center gap-4 p-4 hover:bg-white/40 dark:hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex items-center justify-center size-12 rounded-full bg-primary/10 text-primary shrink-0">
+<span class="material-symbols-outlined text-[28px]">account_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Change Name</p>
+<p class="text-base font-semibold">Alex Thompson</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Appearance Section -->
+<section>
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Appearance</h3>
+</div>
+<div class="glass-card rounded-xl p-4 shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-10 rounded-lg bg-primary/10 text-primary shrink-0">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<p class="text-base font-semibold">Dark Mode</p>
+</div>
+<label class="relative flex h-7 w-12 cursor-pointer items-center rounded-full bg-slate-200 dark:bg-slate-700 p-1 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="h-5 w-5 rounded-full bg-white shadow-md transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+</section><section>
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Language</h3>
+</div>
+<div class="glass-card rounded-xl overflow-hidden shadow-sm">
+<div class="flex items-center gap-4 p-4 hover:bg-white/40 dark:hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex items-center justify-center size-12 rounded-full bg-primary/10 text-primary shrink-0">
+<span class="material-symbols-outlined text-[28px]">language</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">App Language</p>
+<p class="text-base font-semibold">Spanish</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Privacy & Security Section -->
+<!-- Support Section -->
+<!-- Version Info -->
+<div class="text-center pb-8">
+<p class="text-xs text-slate-400 font-medium">4xMil v2.4.0 Build 102</p>
+<p class="text-[10px] text-slate-400/60 mt-1 uppercase tracking-[0.2em]">Fintech Excellence</p>
+</div>
+</div>
+</div>
+</body></html>

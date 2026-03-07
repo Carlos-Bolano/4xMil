@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2e69ff",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f1523",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="p-6 pb-2">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a smiling young man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZjG6qze9tLv_P45jTnR65l8RoYypThiW1uqZKJlDelreb38-FVJeSksw5HhxwQhYJy-VpYwbaoiiUOjZBAcWulR0p4-5JnYxvISpKw5BRmouYQGxJn2_lfVBBOo3rKLXme6HHl-i56j2kcp1R2AK8_rewPG_-HB9Qb7Wsa9FKT_tAJswEKTMFrSRvo9BTIzmDIJ88EQiFpVHMSWPNlpxMAf0ddNYj-A0kMSytd_xxTiiKLXL_EfMcLiBYxhvKz51eXBa6uZ8O2cg"/>
+</div>
+<div>
+<h1 class="text-xl font-bold leading-tight">Hello Carlos 👋</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Calculate your 4x1000 easily</p>
+</div>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-6 py-4 space-y-6">
+<!-- Glassmorphism Calculator Card -->
+<section class="glass-card rounded-2xl p-6 shadow-xl relative overflow-hidden">
+<div class="absolute -top-12 -right-12 size-32 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-6">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">calculate</span>
+</div>
+<h2 class="text-lg font-bold">4x1000 Calculator</h2>
+</div>
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-600 dark:text-slate-400 ml-1">Amount to transfer</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">$</span>
+<input class="w-full pl-8 pr-4 py-4 bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-lg font-semibold" placeholder="500,000" type="text" value="500,000"/>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/25 transition-all active:scale-[0.98]">
+                        Calculate
+                    </button>
+</div>
+</div>
+</section>
+<!-- Results Section -->
+<section class="space-y-4">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 px-1">Calculation Results</h3>
+<div class="grid grid-cols-1 gap-3">
+<!-- Tax Result -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-100 dark:border-slate-700 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<p class="font-medium">Tax Amount (4x1000)</p>
+</div>
+<p class="text-lg font-bold text-orange-600 dark:text-orange-400">$2,000</p>
+</div>
+<!-- Total Result -->
+<div class="bg-primary/5 dark:bg-primary/10 p-5 rounded-2xl border border-primary/20 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<p class="font-bold">Total Amount</p>
+</div>
+<p class="text-xl font-extrabold text-primary">$502,000</p>
+</div>
+</div>
+</section>
+<!-- Quick Info Card -->
+<div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-dashed border-slate-300 dark:border-slate-700">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-slate-400">info</span>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                    The GMF (Gravamen a los Movimientos Financieros) is a national tax applied to financial transactions. The current rate is 4 per 1,000 pesos.
+                </p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+</body></html>
