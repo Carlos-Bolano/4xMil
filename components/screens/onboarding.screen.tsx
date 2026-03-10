@@ -1,4 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
@@ -26,8 +27,13 @@ export default function OnboardingScreen() {
 
         <GlassCard className="w-full max-w-md p-8 flex-col items-center bg-white/90 dark:bg-slate-800/90 shadow-none border-0">
           {/* Logo Placeholder - Matches '4%' logo in design */}
-          <View className="mb-12">
-            <Text className="text-primary text-5xl font-black italic tracking-tighter">4%</Text>
+          <View className="mb-8 ">
+            <Image
+              style={{ width: 80, height: 50 }}
+              source={require("../../assets/images/logo.png")}
+              contentFit="contain"
+              transition={1000}
+            />
           </View>
 
           {/* Illustration Area */}

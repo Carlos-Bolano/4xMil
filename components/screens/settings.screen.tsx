@@ -33,7 +33,7 @@ export default function SettingsScreen() {
             onPress={() => router.back()}
             className="w-10 h-10 flex items-center justify-center rounded-full bg-white/70 dark:bg-slate-800/70 shadow-sm border border-slate-200 dark:border-slate-700"
           >
-            <MaterialIcons name="arrow-back" size={24} color="#0f172a" />
+            <MaterialIcons name="arrow-back" size={24} color="#64748b" />
           </TouchableOpacity>
           <Text className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
             Settings
@@ -46,7 +46,9 @@ export default function SettingsScreen() {
             icon="account-circle"
             label="Change Name"
             value={userName || "Set Name"}
-            onPress={() => router.push("/(onboarding)/NameInputScreen")}
+            onPress={() =>
+              router.push({ pathname: "/(onboarding)/NameInputScreen", params: { name: userName } })
+            }
           />
         </SettingsSection>
 

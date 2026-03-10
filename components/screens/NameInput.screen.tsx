@@ -1,5 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,8 +10,12 @@ import { PrimaryButton } from "../ui/PrimaryButton";
 
 export default function NameInputScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams();
+  const initialName = Array.isArray(params.name) ? params.name[0] : params.name;
+
   const { setUserName, completeOnboarding } = useApp();
-  const [name, setName] = useState("");
+
+  const [name, setName] = useState(initialName || "");
 
   const handleContinue = async () => {
     if (name.trim().length === 0) {
@@ -46,7 +50,7 @@ export default function NameInputScreen() {
               onPress={() => router.back()}
               className="w-10 h-10 shrink-0 items-center justify-center bg-white dark:bg-slate-800 rounded-full shadow-sm"
             >
-              <MaterialIcons name="arrow-back" size={24} color="#0f172a" />
+              <MaterialIcons name="arrow-back" size={24} color="#64748b" />
             </TouchableOpacity>
             <Text className="text-primary font-bold text-2xl tracking-tight">4xMil</Text>
             <View className="w-10 h-10" />
@@ -67,7 +71,7 @@ export default function NameInputScreen() {
               {/* Input Field Section */}
               <View className="relative group w-full">
                 <InputField
-                  label="FULL NAME"
+                  label="YOUR NAME"
                   labelClassName="text-xs font-semibold text-primary uppercase tracking-wider mb-2 ml-1"
                   placeholder="Enter your name"
                   rightIcon={<MaterialIcons name="person" size={24} color="#94a3b8" />}

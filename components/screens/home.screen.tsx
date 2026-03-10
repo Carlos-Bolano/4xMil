@@ -5,10 +5,10 @@ import { Alert, Keyboard, ScrollView, Text, TouchableOpacity, View } from "react
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GlassCard } from "../../components/ui/GlassCard";
 import { InputField } from "../../components/ui/InputField";
-import { PrimaryButton } from "../../components/ui/PrimaryButton";
 import { ResultCard } from "../../components/ui/ResultCard";
 import { useApp } from "../../context/AppContext";
 import { formatCurrency, parseCurrency } from "../../utils/format";
+import { PresstoButton } from "../ui/PresstoButton";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -61,7 +61,7 @@ export default function HomeScreen() {
         {/* Main Content */}
         <View className="flex-1 gap-6">
           {/* Glassmorphism Calculator Card */}
-          <GlassCard className="rounded-2xl p-6 shadow-xl relative overflow-hidden bg-white/70">
+          <GlassCard className="rounded-2xl p-6 shadow-xl relative overflow-hidden ">
             <View
               className="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full"
               style={{ opacity: 0.5 }}
@@ -88,7 +88,8 @@ export default function HomeScreen() {
                     onChangeText={setAmountStr}
                   />
                 </View>
-                <PrimaryButton title="Calculate" onPress={handleCalculate} />
+                {/* <PrimaryButton title="Calculate" onPress={handleCalculate} /> */}
+                <PresstoButton title="Calculate" onPress={handleCalculate} />
               </View>
             </View>
           </GlassCard>
