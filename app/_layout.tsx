@@ -1,25 +1,33 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { PressablesConfig } from "pressto";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AppProvider } from "../context/AppContext";
 import "../global.css";
 
 export default function RootLayout() {
   return (
-    <AppProvider>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
-        <Stack.Screen name="(home)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="(settings)"
-          options={{
-            presentation: "modal",
-            headerShown: false,
-            animation: "slide_from_bottom",
-          }}
-        />
-      </Stack>
-      <StatusBar style="auto" />
-    </AppProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AppProvider>
+        <PressablesConfig animationType="spring" config={{ activeOpacity: 0.8, minScale: 0.96 }}>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+            <Stack.Screen name="(home)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="(settings)"
+              options={{
+                presentation: "transparentModal",
+                headerShown: false,
+                animation: "slide_from_bottom",
+                animationDuration: 500,
+                // animationMatchesGesture: true,
+              }}
+            />
+          </Stack>
+          <StatusBar style="auto" />
+        </PressablesConfig>
+      </AppProvider>
+    </GestureHandlerRootView>
   );
 }
