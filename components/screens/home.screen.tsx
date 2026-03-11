@@ -2,7 +2,6 @@ import { useCalculation } from "@/hooks/useCalculation";
 import { formatCurrency } from "@/utils/format";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GlassCard } from "../../components/ui/GlassCard";
@@ -14,7 +13,7 @@ import { PrimaryButton } from "../ui/PrimaryButton";
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { userName } = useApp();
+  const { userName, t } = useApp();
   const {
     amountStr,
     tax,
@@ -37,9 +36,9 @@ export default function HomeScreen() {
             </View>
             <View>
               <Text className="text-xl font-bold leading-tight text-slate-900 dark:text-slate-100">
-                Hello {userName || "User"} <HelloWave />
+                {t("home.greeting", { name: userName || t("common.user") })} <HelloWave />
               </Text>
-              <Text className="text-slate-500 dark:text-slate-400 text-sm">Calculate your 4×1000 easily</Text>
+              <Text className="text-slate-500 dark:text-slate-400 text-sm">{t("home.subtitle")}</Text>
             </View>
           </View>
           <TouchableOpacity
@@ -65,23 +64,22 @@ export default function HomeScreen() {
                   <MaterialIcons name="calculate" size={16} color="white" />
                 </View>
                 <Text className="text-lg font-bold text-slate-900 dark:text-slate-100">
-                  4×1000 Calculator
+                  {t("home.calculatorTitle")}
                 </Text>
               </View>
 
               <View className="gap-4">
                 <View>
                   <InputField
-                    label="Amount to transfer"
+                    label={t("home.amountLabel")}
                     leftPrefix="$"
-                    placeholder="500.000"
+                    placeholder={t("home.amountPlaceholder")}
                     keyboardType="numeric"
                     value={amountStr}
                     onChangeText={handleAmountChange}
                   />
                 </View>
-                <PrimaryButton title="Calculate" onPress={handleCalculate} />
-                {/* <PresstoButton title="Calculate" onPress={handleCalculate} /> */}
+                <PrimaryButton title={t("home.calculate")} onPress={handleCalculate} />
               </View>
             </View>
           </GlassCard>
@@ -90,11 +88,11 @@ export default function HomeScreen() {
           {canShowActions ? (
             <View className="gap-4">
               <Text className="text-sm font-semibold uppercase tracking-wider text-slate-400 px-1">
-                Calculation Results
+                {t("home.resultsTitle")}
               </Text>
 
               <ResultCard
-                title="Tax Amount (4×1000)"
+                title={t("home.taxAmountTitle")}
                 amount={formatCurrency(tax)}
                 icon={
                   <View className="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center">
@@ -104,7 +102,7 @@ export default function HomeScreen() {
               />
 
               <ResultCard
-                title="Total Amount"
+                title={t("home.totalAmountTitle")}
                 amount={formatCurrency(total)}
                 variant="primary"
                 icon={
@@ -120,14 +118,14 @@ export default function HomeScreen() {
                   className="flex-1 flex-row items-center justify-center gap-2 rounded-xl bg-primary py-3 px-4 shadow-lg shadow-primary/25"
                 >
                   <MaterialIcons name="share" size={18} color="white" />
-                  <Text className="text-white font-bold">Compartir</Text>
+                  <Text className="text-white font-bold">{t("home.share")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={handleCopyTotal}
                   className="flex-1 flex-row items-center justify-center gap-2 rounded-xl bg-white dark:bg-slate-800 py-3 px-4 border border-slate-200 dark:border-slate-700"
                 >
                   <MaterialIcons name="content-copy" size={18} color="#2e69ff" />
-                  <Text className="text-primary font-bold">Copiar total</Text>
+                  <Text className="text-primary font-bold">{t("home.copyTotal")}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -142,10 +140,9 @@ export default function HomeScreen() {
             <MaterialIcons name="info" size={20} color="#94a3b8" style={{ marginTop: 2 }} />
             <View className="flex-1">
               <Text className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                El GMF (4×1000) es un impuesto en Colombia sobre movimientos financieros. Tarifa: $4 por cada
-                $1.000.
+                {t("home.quickInfo")}
               </Text>
-              <Text className="text-[11px] font-semibold text-primary mt-2">Ver información</Text>
+              <Text className="text-[11px] font-semibold text-primary mt-2">{t("home.viewInfo")}</Text>
             </View>
             <MaterialIcons name="chevron-right" size={22} color="#94a3b8" style={{ marginTop: 1 }} />
           </TouchableOpacity>

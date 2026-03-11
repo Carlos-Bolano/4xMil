@@ -1,6 +1,7 @@
+import i18n, { defaultLanguage, type SupportedLanguage } from "@/i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useColorScheme } from "nativewind";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 interface AppContextType {
   userName: string | null;
@@ -9,8 +10,9 @@ interface AppContextType {
   completeOnboarding: () => Promise<void>;
   theme: "light" | "dark";
   toggleTheme: () => void;
-  language: string;
-  setLanguage: (lang: string) => void;
+  language: SupportedLanguage;
+  setLanguage: (lang: SupportedLanguage) => void;
+  t: (key: string, options?: Record<string, unknown>) => string;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -19,7 +21,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [userName, setUserNameState] = useState<string | null>(null);
   const [isOnboardingCompleted, setIsOnboardingCompleted] = useState(false);
   const { colorScheme, toggleColorScheme } = useColorScheme();
-  const [language, setLanguage] = useState("English");
+  const [language, setLanguage] = useState<SupportedLanguage>(defaultLanguage);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +36,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
       if (storedName) setUserNameState(storedName);
       if (storedOnboarding === "true") setIsOnboardingCompleted(true);
-      if (storedLanguage) setLanguage(storedLanguage);
+      const normalizedLanguage = normalizeLanguage(storedLanguage);
+      const languageToUse = normalizedLanguage ?? defaultLanguage;
+      setLanguage(languageToUse);
     } catch (e) {
       console.error("Failed to load storage data", e);
     } finally {
@@ -64,14 +68,17 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     toggleColorScheme();
   };
 
-  const handleSetLanguage = async (lang: string) => {
-    try {
-      await AsyncStorage.setItem("language", lang);
-      setLanguage(lang);
-    } catch (e) {
+  const handleSetLanguage = (lang: SupportedLanguage) => {
+    setLanguage(lang);
+    void AsyncStorage.setItem("language", lang).catch((e) => {
       console.error("Failed to save language", e);
-    }
+    });
   };
+
+  const t = useCallback(
+    (key: string, options?: Record<string, unknown>) => i18n.t(key, { ...options, locale: language }),
+    [language],
+  );
 
   if (loading) {
     return null; // Or a splash screen
@@ -88,6 +95,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         toggleTheme,
         language,
         setLanguage: handleSetLanguage,
+        t,
       }}
     >
       {children}
@@ -101,4 +109,15 @@ export function useApp() {
     throw new Error("useApp must be used within an AppProvider");
   }
   return context;
+}
+
+function normalizeLanguage(value: string | null): SupportedLanguage | null {
+  if (!value) return null;
+  if (value === "en" || value === "es") return value;
+  if (value === "English") return "en";
+  if (value === "Spanish") return "es";
+  const lower = value.toLowerCase();
+  if (lower.startsWith("en")) return "en";
+  if (lower.startsWith("es")) return "es";
+  return null;
 }

@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useApp } from "../../context/AppContext";
@@ -13,13 +13,13 @@ export default function NameInputScreen() {
   const params = useLocalSearchParams();
   const initialName = Array.isArray(params.name) ? params.name[0] : params.name;
 
-  const { setUserName, completeOnboarding } = useApp();
+  const { setUserName, completeOnboarding, t } = useApp();
 
   const [name, setName] = useState(initialName || "");
 
   const handleContinue = async () => {
     if (name.trim().length === 0) {
-      Alert.alert("Required", "Please enter your name to continue.");
+      Alert.alert(t("nameInput.requiredTitle"), t("nameInput.requiredMessage"));
       return;
     }
 
@@ -61,19 +61,19 @@ export default function NameInputScreen() {
               {/* Title Section */}
               <View className="items-center">
                 <Text className="text-slate-900 dark:text-slate-100 text-3xl font-bold leading-tight tracking-tight text-center">
-                  What is your name?
+                  {t("nameInput.title")}
                 </Text>
                 <Text className="text-slate-500 dark:text-slate-400 text-sm text-center mt-2">
-                  Let&apos;s get started on your journey to 4xMil.
+                  {t("nameInput.subtitle")}
                 </Text>
               </View>
 
               {/* Input Field Section */}
               <View className="relative group w-full">
                 <InputField
-                  label="YOUR NAME"
+                  label={t("nameInput.inputLabel")}
                   labelClassName="text-xs font-semibold text-primary uppercase tracking-wider mb-2 ml-1"
-                  placeholder="Enter your name"
+                  placeholder={t("nameInput.placeholder")}
                   rightIcon={<MaterialIcons name="person" size={24} color="#94a3b8" />}
                   value={name}
                   onChangeText={setName}
@@ -82,7 +82,7 @@ export default function NameInputScreen() {
 
               {/* CTA Button */}
               <View className="pt-4 w-full">
-                <PrimaryButton title="Continue" onPress={handleContinue}>
+                <PrimaryButton title={t("nameInput.continue")} onPress={handleContinue}>
                   <MaterialIcons name="arrow-forward" size={20} color="white" />
                 </PrimaryButton>
               </View>

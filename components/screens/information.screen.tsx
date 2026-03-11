@@ -1,6 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React from "react";
 import { Pressable, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useApp } from "../../context/AppContext";
@@ -9,7 +8,7 @@ import { PrimaryButton } from "../ui/PrimaryButton";
 
 export default function InformationScreen() {
   const router = useRouter();
-  const { userName } = useApp();
+  const { userName, t } = useApp();
 
   return (
     <SafeAreaView className="flex-1 bg-black/40">
@@ -28,9 +27,11 @@ export default function InformationScreen() {
                 </View>
                 <View>
                   <Text className="text-base font-bold leading-tight text-slate-900 dark:text-slate-100">
-                    Hola {userName || "User"}
+                    {t("information.greeting", { name: userName || t("common.user") })}
                   </Text>
-                  <Text className="text-slate-500 dark:text-slate-400 text-xs">Información del impuesto</Text>
+                  <Text className="text-slate-500 dark:text-slate-400 text-xs">
+                    {t("information.headerSubtitle")}
+                  </Text>
                 </View>
               </View>
 
@@ -43,7 +44,7 @@ export default function InformationScreen() {
             </View>
 
             <Text className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 leading-tight mb-5">
-              ¿Qué es el 4×1000 (GMF)?
+              {t("information.title")}
             </Text>
 
             <View className="rounded-2xl bg-primary/15 border border-primary/10 overflow-hidden mb-4">
@@ -53,25 +54,25 @@ export default function InformationScreen() {
             </View>
 
             <View className="self-start rounded-full bg-primary/10 px-3 py-1 border border-primary/15 mb-3">
-              <Text className="text-[10px] tracking-wider font-bold text-primary">IMPUESTO EN COLOMBIA</Text>
+              <Text className="text-[10px] tracking-wider font-bold text-primary">
+                {t("information.badge")}
+              </Text>
             </View>
 
             <Text className="text-lg font-extrabold text-slate-900 dark:text-slate-100 mb-2">
-              Impuesto a Movimientos Financieros
+              {t("information.sectionTitle")}
             </Text>
             <Text className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
-              El 4×1000 (GMF) es un impuesto que se aplica a ciertas transacciones financieras en Colombia.
-              Por cada $1.000 que se mueve, se cobran $4. Generalmente aplica a retiros y transferencias
-              bancarias, con algunas exenciones.
+              {t("information.description")}
             </Text>
 
-            <PrimaryButton title="Calcular mi 4×1000" onPress={() => router.back()}>
+            <PrimaryButton title={t("information.calculateButton")} onPress={() => router.back()}>
               <MaterialIcons name="show-chart" size={18} color="white" />
             </PrimaryButton>
 
             <View className="mt-7 mb-3">
               <Text className="text-base font-extrabold text-slate-900 dark:text-slate-100">
-                Detalles clave
+                {t("information.keyDetails")}
               </Text>
             </View>
 
@@ -82,10 +83,10 @@ export default function InformationScreen() {
                 </View>
                 <View className="flex-1">
                   <Text className="text-sm font-bold text-slate-900 dark:text-slate-100">
-                    Descuento automático
+                    {t("information.details.autoDiscount.title")}
                   </Text>
                   <Text className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Los bancos lo descuentan automáticamente al momento de la transacción.
+                    {t("information.details.autoDiscount.description")}
                   </Text>
                 </View>
               </GlassCard>
@@ -95,9 +96,11 @@ export default function InformationScreen() {
                   <MaterialIcons name="verified-user" size={20} color="#2e69ff" />
                 </View>
                 <View className="flex-1">
-                  <Text className="text-sm font-bold text-slate-900 dark:text-slate-100">Cuenta exenta</Text>
+                  <Text className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                    {t("information.details.exemptAccount.title")}
+                  </Text>
                   <Text className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Puedes marcar una cuenta para exención, con un tope mensual definido por norma.
+                    {t("information.details.exemptAccount.description")}
                   </Text>
                 </View>
               </GlassCard>
@@ -108,10 +111,10 @@ export default function InformationScreen() {
                 </View>
                 <View className="flex-1">
                   <Text className="text-sm font-bold text-slate-900 dark:text-slate-100">
-                    Tipos de transacción
+                    {t("information.details.transactionTypes.title")}
                   </Text>
                   <Text className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Suele aplicar a transferencias, retiros y otros movimientos dentro del sistema financiero.
+                    {t("information.details.transactionTypes.description")}
                   </Text>
                 </View>
               </GlassCard>
@@ -121,9 +124,11 @@ export default function InformationScreen() {
                   <MaterialIcons name="history" size={20} color="#2e69ff" />
                 </View>
                 <View className="flex-1">
-                  <Text className="text-sm font-bold text-slate-900 dark:text-slate-100">Origen</Text>
+                  <Text className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                    {t("information.details.origin.title")}
+                  </Text>
                   <Text className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Nació en 1998 como una medida temporal (2×1000) y se mantuvo con ajustes.
+                    {t("information.details.origin.description")}
                   </Text>
                 </View>
               </GlassCard>

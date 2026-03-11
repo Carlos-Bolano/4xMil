@@ -2,10 +2,12 @@ import * as Clipboard from "expo-clipboard";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Alert, Keyboard, Share } from "react-native";
 
+import { useApp } from "@/context/AppContext";
 import { formatCurrency, parseCurrency } from "@/utils/format";
 import { formatAmountInput } from "@/utils/formatAmountInput";
 
 export function useCalculation() {
+  const { t } = useApp();
   const [amountStr, setAmountStr] = useState("");
   const [tax, setTax] = useState(0);
   const [total, setTotal] = useState(0);
@@ -27,7 +29,7 @@ export function useCalculation() {
     Keyboard.dismiss();
 
     if (amount <= 0) {
-      Alert.alert("Invalid Amount", "Please enter a valid amount greater than 0.");
+      Alert.alert(t("calc.invalidAmountTitle"), t("calc.invalidAmountMessage"));
       return;
     }
 
@@ -36,25 +38,29 @@ export function useCalculation() {
 
     setTax(calculatedTax);
     setTotal(calculatedTotal);
-  }, [amount]);
+  }, [amount, t]);
 
   const handleShare = useCallback(async () => {
     try {
-      const message = `Hola! El cálculo de mi 4x1000 es: Monto: ${formatCurrency(amount)} | Impuesto: ${formatCurrency(tax)} | Total a transferir: ${formatCurrency(total)}. Calculado con 4xMil App.`;
+      const message = t("calc.shareMessage", {
+        amount: formatCurrency(amount),
+        tax: formatCurrency(tax),
+        total: formatCurrency(total),
+      });
       await Share.share({ message });
     } catch {
-      Alert.alert("Error", "No se pudo abrir el menú de compartir.");
+      Alert.alert(t("calc.shareErrorTitle"), t("calc.shareErrorMessage"));
     }
-  }, [amount, tax, total]);
+  }, [amount, tax, total, t]);
 
   const handleCopyTotal = useCallback(async () => {
     try {
       await Clipboard.setStringAsync(formatCurrency(total));
-      Alert.alert("Copiado", "El total fue copiado al portapapeles.");
+      Alert.alert(t("calc.copiedTitle"), t("calc.copiedMessage"));
     } catch {
-      Alert.alert("Error", "No se pudo copiar al portapapeles.");
+      Alert.alert(t("calc.copyErrorTitle"), t("calc.copyErrorMessage"));
     }
-  }, [total]);
+  }, [total, t]);
 
   return {
     amountStr,

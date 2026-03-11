@@ -1,0 +1,97 @@
+{
+  "common": {
+    "user": "User",
+    "errorTitle": "Error"
+  },
+  "onboarding": {
+    "title": "Calculate the\n4×1000 in seconds",
+    "subtitle": "Enter any amount of money and instantly see how much the 4×1000 tax will be.",
+    "continue": "Continue",
+    "footer": "Safe • Secure • Accurate"
+  },
+  "nameInput": {
+    "title": "What is your name?",
+    "subtitle": "Let's get started on your journey to 4xMil.",
+    "inputLabel": "YOUR NAME",
+    "placeholder": "Enter your name",
+    "continue": "Continue",
+    "requiredTitle": "Required",
+    "requiredMessage": "Please enter your name to continue."
+  },
+  "home": {
+    "greeting": "Hello {{name}}",
+    "subtitle": "Calculate your 4×1000 easily",
+    "calculatorTitle": "4×1000 Calculator",
+    "amountLabel": "Amount to transfer",
+    "amountPlaceholder": "500.000",
+    "calculate": "Calculate",
+    "resultsTitle": "Calculation Results",
+    "taxAmountTitle": "Tax Amount (4×1000)",
+    "totalAmountTitle": "Total Amount",
+    "share": "Share",
+    "copyTotal": "Copy total",
+    "quickInfo": "The GMF (4×1000) is a tax in Colombia on financial movements. Rate: $4 for every $1,000.",
+    "viewInfo": "View information"
+  },
+  "information": {
+    "greeting": "Hi {{name}}",
+    "headerSubtitle": "Tax information",
+    "title": "What is 4×1000 (GMF)?",
+    "badge": "TAX IN COLOMBIA",
+    "sectionTitle": "Financial Transaction Tax",
+    "description": "The 4×1000 (GMF) is a tax applied to certain financial transactions in Colombia.\nFor every $1,000 moved, $4 is charged. It generally applies to bank withdrawals and transfers, with some exemptions.",
+    "calculateButton": "Calculate my 4×1000",
+    "keyDetails": "Key details",
+    "details": {
+      "autoDiscount": {
+        "title": "Automatic deduction",
+        "description": "Banks deduct it automatically at the moment of the transaction."
+      },
+      "exemptAccount": {
+        "title": "Exempt account",
+        "description": "You can mark an account as exempt, with a monthly cap defined by regulation."
+      },
+      "transactionTypes": {
+        "title": "Transaction types",
+        "description": "It usually applies to transfers, withdrawals, and other movements within the financial system."
+      },
+      "origin": {
+        "title": "Origin",
+        "description": "It was created in 1998 as a temporary measure (2×1000) and remained with adjustments."
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "profileTitle": "Profile",
+    "changeNameLabel": "Change name",
+    "setNameValue": "Set name",
+    "appearanceTitle": "Appearance",
+    "darkModeLabel": "Dark mode",
+    "languageTitle": "Language",
+    "appLanguageLabel": "App language",
+    "languages": {
+      "en": "English",
+      "es": "Spanish"
+    },
+    "creditsTitle": "Credits",
+    "createdBy": "Created by",
+    "github": "GitHub",
+    "portfolio": "Portfolio",
+    "openLinkErrorTitle": "Error",
+    "openLinkErrorMessage": "Couldn't open the link.",
+    "versionInfo": "4xMil v{{version}} Build {{build}}",
+    "tagline": "Fintech Excellence"
+  },
+  "calc": {
+    "invalidAmountTitle": "Invalid Amount",
+    "invalidAmountMessage": "Please enter a valid amount greater than 0.",
+    "shareMessage": "Hi! My 4x1000 calculation is: Amount: {{amount}} | Tax: {{tax}} | Total to transfer: {{total}}. Calculated with 4xMil App.",
+    "shareErrorTitle": "Error",
+    "shareErrorMessage": "Couldn't open the share menu.",
+    "copiedTitle": "Copied",
+    "copiedMessage": "The total was copied to the clipboard.",
+    "copyErrorTitle": "Error",
+    "copyErrorMessage": "Couldn't copy to the clipboard."
+  }
+}
