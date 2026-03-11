@@ -1,38 +1,30 @@
+import { useCalculation } from "@/hooks/useCalculation";
+import { formatCurrency } from "@/utils/format";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
-import { Alert, Keyboard, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GlassCard } from "../../components/ui/GlassCard";
 import { InputField } from "../../components/ui/InputField";
 import { ResultCard } from "../../components/ui/ResultCard";
 import { useApp } from "../../context/AppContext";
-import { formatCurrency, parseCurrency } from "../../utils/format";
-import { PresstoButton } from "../ui/PresstoButton";
+import { HelloWave } from "../ui/hello-wave";
+import { PrimaryButton } from "../ui/PrimaryButton";
 
 export default function HomeScreen() {
   const router = useRouter();
   const { userName } = useApp();
-  const [amountStr, setAmountStr] = useState("");
-  const [tax, setTax] = useState(0);
-  const [total, setTotal] = useState(0);
-
-  const handleCalculate = () => {
-    Keyboard.dismiss();
-    const amount = parseCurrency(amountStr);
-
-    if (amount <= 0) {
-      Alert.alert("Invalid Amount", "Please enter a valid amount greater than 0.");
-      return;
-    }
-
-    // 4x1000 calculation: (Amount * 4) / 1000
-    const calculatedTax = (amount * 4) / 1000;
-    const calculatedTotal = amount + calculatedTax;
-
-    setTax(calculatedTax);
-    setTotal(calculatedTotal);
-  };
+  const {
+    amountStr,
+    tax,
+    total,
+    handleAmountChange,
+    handleCalculate,
+    handleShare,
+    handleCopyTotal,
+    canShowActions,
+  } = useCalculation();
 
   return (
     <SafeAreaView className="flex-1 bg-background-light dark:bg-background-dark">
@@ -45,7 +37,7 @@ export default function HomeScreen() {
             </View>
             <View>
               <Text className="text-xl font-bold leading-tight text-slate-900 dark:text-slate-100">
-                Hello {userName || "User"} 👋
+                Hello {userName || "User"} <HelloWave />
               </Text>
               <Text className="text-slate-500 dark:text-slate-400 text-sm">Calculate your 4×1000 easily</Text>
             </View>
@@ -82,14 +74,14 @@ export default function HomeScreen() {
                   <InputField
                     label="Amount to transfer"
                     leftPrefix="$"
-                    placeholder="500,000"
+                    placeholder="500.000"
                     keyboardType="numeric"
                     value={amountStr}
-                    onChangeText={setAmountStr}
+                    onChangeText={handleAmountChange}
                   />
                 </View>
-                {/* <PrimaryButton title="Calculate" onPress={handleCalculate} /> */}
-                <PresstoButton title="Calculate" onPress={handleCalculate} />
+                <PrimaryButton title="Calculate" onPress={handleCalculate} />
+                {/* <PresstoButton title="Calculate" onPress={handleCalculate} /> */}
               </View>
             </View>
           </GlassCard>
@@ -120,6 +112,25 @@ export default function HomeScreen() {
                 </View>
               }
             />
+
+            {canShowActions ? (
+              <View className="flex-row gap-3">
+                <TouchableOpacity
+                  onPress={handleShare}
+                  className="flex-1 flex-row items-center justify-center gap-2 rounded-xl bg-primary py-3 px-4 shadow-lg shadow-primary/25"
+                >
+                  <MaterialIcons name="share" size={18} color="white" />
+                  <Text className="text-white font-bold">Compartir</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={handleCopyTotal}
+                  className="flex-1 flex-row items-center justify-center gap-2 rounded-xl bg-white dark:bg-slate-800 py-3 px-4 border border-slate-200 dark:border-slate-700"
+                >
+                  <MaterialIcons name="content-copy" size={18} color="#2e69ff" />
+                  <Text className="text-primary font-bold">Copiar total</Text>
+                </TouchableOpacity>
+              </View>
+            ) : null}
           </View>
 
           {/* Quick Info Card */}
