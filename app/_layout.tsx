@@ -21,7 +21,15 @@ export default function RootLayout() {
                 headerShown: false,
                 animation: "slide_from_bottom",
                 animationDuration: 500,
-                // animationMatchesGesture: true,
+              }}
+            />
+            <Stack.Screen
+              name="(information)"
+              options={{
+                presentation: "transparentModal",
+                headerShown: false,
+                animation: "slide_from_bottom",
+                animationDuration: 500,
               }}
             />
           </Stack>

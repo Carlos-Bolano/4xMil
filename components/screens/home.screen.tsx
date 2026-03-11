@@ -87,33 +87,33 @@ export default function HomeScreen() {
           </GlassCard>
 
           {/* Results Section */}
-          <View className="gap-4">
-            <Text className="text-sm font-semibold uppercase tracking-wider text-slate-400 px-1">
-              Calculation Results
-            </Text>
+          {canShowActions ? (
+            <View className="gap-4">
+              <Text className="text-sm font-semibold uppercase tracking-wider text-slate-400 px-1">
+                Calculation Results
+              </Text>
 
-            <ResultCard
-              title="Tax Amount (4×1000)"
-              amount={formatCurrency(tax)}
-              icon={
-                <View className="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center">
-                  <MaterialIcons name="receipt-long" size={20} color="#ea580c" />
-                </View>
-              }
-            />
+              <ResultCard
+                title="Tax Amount (4×1000)"
+                amount={formatCurrency(tax)}
+                icon={
+                  <View className="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center">
+                    <MaterialIcons name="receipt-long" size={20} color="#ea580c" />
+                  </View>
+                }
+              />
 
-            <ResultCard
-              title="Total Amount"
-              amount={formatCurrency(total)}
-              variant="primary"
-              icon={
-                <View className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                  <MaterialIcons name="account-balance-wallet" size={20} color="white" />
-                </View>
-              }
-            />
+              <ResultCard
+                title="Total Amount"
+                amount={formatCurrency(total)}
+                variant="primary"
+                icon={
+                  <View className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                    <MaterialIcons name="account-balance-wallet" size={20} color="white" />
+                  </View>
+                }
+              />
 
-            {canShowActions ? (
               <View className="flex-row gap-3">
                 <TouchableOpacity
                   onPress={handleShare}
@@ -130,17 +130,25 @@ export default function HomeScreen() {
                   <Text className="text-primary font-bold">Copiar total</Text>
                 </TouchableOpacity>
               </View>
-            ) : null}
-          </View>
+            </View>
+          ) : null}
 
           {/* Quick Info Card */}
-          <View className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-dashed border-slate-300 dark:border-slate-700 flex-row gap-3 items-start">
+          <TouchableOpacity
+            activeOpacity={0.85}
+            onPress={() => router.push("/(information)/info")}
+            className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-dashed border-slate-300 dark:border-slate-700 flex-row gap-3 items-start"
+          >
             <MaterialIcons name="info" size={20} color="#94a3b8" style={{ marginTop: 2 }} />
-            <Text className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed flex-1">
-              The GMF (Gravamen a los Movimientos Financieros) is a national tax applied to financial
-              transactions. The current rate is 4 per 1,000 pesos.
-            </Text>
-          </View>
+            <View className="flex-1">
+              <Text className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                El GMF (4×1000) es un impuesto en Colombia sobre movimientos financieros. Tarifa: $4 por cada
+                $1.000.
+              </Text>
+              <Text className="text-[11px] font-semibold text-primary mt-2">Ver información</Text>
+            </View>
+            <MaterialIcons name="chevron-right" size={22} color="#94a3b8" style={{ marginTop: 1 }} />
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
