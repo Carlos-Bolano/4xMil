@@ -1,4 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import * as WebBrowser from "expo-web-browser";
 import { useRouter } from "expo-router";
 import { Alert, Linking, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,14 +12,13 @@ export default function SettingsScreen() {
 
   const openExternalLink = async (url: string) => {
     try {
-      const canOpen = await Linking.canOpenURL(url);
-      if (!canOpen) {
-        Alert.alert(t("settings.openLinkErrorTitle"), t("settings.openLinkErrorMessage"));
-        return;
-      }
-      await Linking.openURL(url);
+      await WebBrowser.openBrowserAsync(url);
     } catch {
-      Alert.alert(t("settings.openLinkErrorTitle"), t("settings.openLinkErrorMessage"));
+      try {
+        await Linking.openURL(url);
+      } catch {
+        Alert.alert(t("settings.openLinkErrorTitle"), t("settings.openLinkErrorMessage"));
+      }
     }
   };
 

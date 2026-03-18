@@ -7,6 +7,13 @@ export const formatCurrency = (amount: number): string => {
   }).format(amount);
 };
 
+export const formatNumber = (amount: number): string => {
+  return new Intl.NumberFormat("es-CO", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(amount);
+};
+
 export const parseCurrency = (value: string): number => {
   const cleaned = value.replace(/[^\d.,]/g, "");
   if (cleaned.length === 0) return 0;

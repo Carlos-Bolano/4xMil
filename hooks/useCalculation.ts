@@ -3,11 +3,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Alert, Keyboard, Share } from "react-native";
 
 import { useApp } from "@/context/AppContext";
-import { formatCurrency, parseCurrency } from "@/utils/format";
+import { formatCurrency, formatNumber, parseCurrency } from "@/utils/format";
 import { formatAmountInput } from "@/utils/formatAmountInput";
 
 export function useCalculation() {
-  const { t } = useApp();
+  const { t, showToast } = useApp();
   const [amountStr, setAmountStr] = useState("");
   const [tax, setTax] = useState(0);
   const [total, setTotal] = useState(0);
@@ -55,12 +55,12 @@ export function useCalculation() {
 
   const handleCopyTotal = useCallback(async () => {
     try {
-      await Clipboard.setStringAsync(formatCurrency(total));
-      Alert.alert(t("calc.copiedTitle"), t("calc.copiedMessage"));
+      await Clipboard.setStringAsync(formatNumber(total));
+      showToast(t("calc.copiedMessage"));
     } catch {
-      Alert.alert(t("calc.copyErrorTitle"), t("calc.copyErrorMessage"));
+      showToast(t("calc.copyErrorMessage"));
     }
-  }, [total, t]);
+  }, [showToast, t, total]);
 
   return {
     amountStr,

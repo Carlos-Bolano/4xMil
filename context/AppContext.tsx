@@ -2,6 +2,7 @@ import i18n, { defaultLanguage, type SupportedLanguage } from "@/i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useColorScheme } from "nativewind";
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { Animated, Platform, Text, View } from "react-native";
 
 interface AppContextType {
   userName: string | null;
@@ -13,6 +14,7 @@ interface AppContextType {
   language: SupportedLanguage;
   setLanguage: (lang: SupportedLanguage) => void;
   t: (key: string, options?: Record<string, unknown>) => string;
+  showToast: (message: string) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -23,6 +25,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const { colorScheme, toggleColorScheme } = useColorScheme();
   const [language, setLanguage] = useState<SupportedLanguage>(defaultLanguage);
   const [loading, setLoading] = useState(true);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const toastOpacity = React.useRef(new Animated.Value(0)).current;
+  const toastTranslateY = React.useRef(new Animated.Value(8)).current;
+  const toastTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     loadStorageData();
@@ -80,9 +86,59 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     [language],
   );
 
+  const showToast = useCallback(
+    (message: string) => {
+      setToastMessage(message);
+
+      if (toastTimeoutRef.current) {
+        clearTimeout(toastTimeoutRef.current);
+        toastTimeoutRef.current = null;
+      }
+
+      Animated.parallel([
+        Animated.timing(toastOpacity, {
+          toValue: 1,
+          duration: 140,
+          useNativeDriver: true,
+        }),
+        Animated.timing(toastTranslateY, {
+          toValue: 0,
+          duration: 140,
+          useNativeDriver: true,
+        }),
+      ]).start();
+
+      toastTimeoutRef.current = setTimeout(() => {
+        Animated.parallel([
+          Animated.timing(toastOpacity, {
+            toValue: 0,
+            duration: 180,
+            useNativeDriver: true,
+          }),
+          Animated.timing(toastTranslateY, {
+            toValue: 8,
+            duration: 180,
+            useNativeDriver: true,
+          }),
+        ]).start(({ finished }) => {
+          if (finished) setToastMessage(null);
+        });
+      }, 1600);
+    },
+    [toastOpacity, toastTranslateY],
+  );
+
+  useEffect(() => {
+    return () => {
+      if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    };
+  }, []);
+
   if (loading) {
     return null; // Or a splash screen
   }
+
+  const isDark = colorScheme === "dark";
 
   return (
     <AppContext.Provider
@@ -96,9 +152,48 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         language,
         setLanguage: handleSetLanguage,
         t,
+        showToast,
       }}
     >
       {children}
+      {toastMessage ? (
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            left: 16,
+            right: 16,
+            bottom: Platform.OS === "ios" ? 44 : 40,
+            alignItems: "center",
+          }}
+        >
+          <Animated.View
+            style={{
+              opacity: toastOpacity,
+              transform: [{ translateY: toastTranslateY }],
+              backgroundColor: isDark ? "rgba(15, 23, 42, 0.92)" : "rgba(255, 255, 255, 0.96)",
+              borderWidth: 1,
+              borderColor: isDark ? "rgba(148, 163, 184, 0.18)" : "rgba(15, 23, 42, 0.12)",
+              borderRadius: 14,
+              paddingVertical: 10,
+              paddingHorizontal: 14,
+              maxWidth: 420,
+              width: "100%",
+            }}
+          >
+            <Text
+              style={{
+                color: isDark ? "#fff" : "#0f172a",
+                fontSize: 13,
+                fontWeight: "600",
+                textAlign: "center",
+              }}
+            >
+              {toastMessage}
+            </Text>
+          </Animated.View>
+        </View>
+      ) : null}
     </AppContext.Provider>
   );
 }
