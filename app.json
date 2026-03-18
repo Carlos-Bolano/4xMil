@@ -11,10 +11,7 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "CFBundleLocalizations": [
-          "en",
-          "es"
-        ]
+        "CFBundleLocalizations": ["en", "es"]
       }
     },
     "android": {
@@ -38,14 +35,8 @@
         "expo-localization",
         {
           "supportedLocales": {
-            "ios": [
-              "en",
-              "es"
-            ],
-            "android": [
-              "en",
-              "es"
-            ]
+            "ios": ["en", "es"],
+            "android": ["en", "es"]
           }
         }
       ],
@@ -54,11 +45,7 @@
         {
           "image": "./assets/icons/splash-icon.png",
           "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
-          "dark": {
-            "backgroundColor": "#0f1523"
-          }
+          "resizeMode": "contain"
         }
       ]
     ],
