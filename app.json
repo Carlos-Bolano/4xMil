@@ -11,7 +11,10 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "CFBundleLocalizations": ["en", "es"]
+        "CFBundleLocalizations": [
+          "en",
+          "es"
+        ]
       }
     },
     "android": {
@@ -22,7 +25,8 @@
         "monochromeImage": "./assets/icons/adaptive-icon.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.carlosbolano.x4xMil"
     },
     "web": {
       "output": "static",
@@ -34,8 +38,14 @@
         "expo-localization",
         {
           "supportedLocales": {
-            "ios": ["en", "es"],
-            "android": ["en", "es"]
+            "ios": [
+              "en",
+              "es"
+            ],
+            "android": [
+              "en",
+              "es"
+            ]
           }
         }
       ],
