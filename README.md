@@ -25,7 +25,7 @@ I’d love to hear from you! Whether you have questions, feedback, or want to co
 
 [![X][X Badge]][X URL] [![LinkedIn][LinkedIn Badge]][LinkedIn URL] [![GMail][GMail Badge]][GMail URL] [![Portfolio][Portfolio Badge]][Portfolio URL]
 
-[product-screenshot]: ./assets/icons/splash-icon.png
+[product-screenshot]: ./assets/images/app-screens.png
 [X Badge]: https://img.shields.io/badge/X-000000.svg?style=for-the-badge&logo=X&logoColor=white
 [X URL]: https://x.com/Calisto_dev
 [LinkedIn Badge]: https://img.shields.io/badge/LinkedIn-0A66C2.svg?style=for-the-badge&logo=LinkedIn&logoColor=white
