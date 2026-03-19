@@ -4,7 +4,7 @@
 
 4xMil is a practical mobile application designed to simplify the calculation of Colombia's "4x1000" tax. Built with a focus on speed and clarity, the app allows users to instantly determine tax amounts through a clean, intuitive interface. Whether you are managing personal finances or business transactions, 4xMil provides a seamless way to stay informed about your bank deductions.
 
-[![Product Screen Shot][product-screenshot]](./assets/images//app-screens.png)
+[![Product Screen Shot][product-screenshot]](./assets/images/app-screens.png)
 
 ### 🌟 Features
 
