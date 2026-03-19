@@ -1,13 +1,15 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import React from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GlassCard } from "../../components/ui/GlassCard";
 import { PrimaryButton } from "../../components/ui/PrimaryButton";
+import { useApp } from "../../context/AppContext";
 
 export default function OnboardingScreen() {
   const router = useRouter();
+  const { t } = useApp();
 
   return (
     <SafeAreaView className="flex-1 bg-background-light dark:bg-background-dark">
@@ -26,8 +28,13 @@ export default function OnboardingScreen() {
 
         <GlassCard className="w-full max-w-md p-8 flex-col items-center bg-white/90 dark:bg-slate-800/90 shadow-none border-0">
           {/* Logo Placeholder - Matches '4%' logo in design */}
-          <View className="mb-12">
-            <Text className="text-primary text-5xl font-black italic tracking-tighter">4%</Text>
+          <View className="mb-8 ">
+            <Image
+              style={{ width: 80, height: 50 }}
+              source={require("../../assets/images/logo.png")}
+              contentFit="contain"
+              transition={1000}
+            />
           </View>
 
           {/* Illustration Area */}
@@ -45,20 +52,23 @@ export default function OnboardingScreen() {
           {/* Content */}
           <View className="items-center mb-12">
             <Text className="text-slate-900 dark:text-slate-100 text-[28px] font-bold leading-tight text-center px-2">
-              Calculate the{"\n"}4×1000 in seconds
+              {t("onboarding.title")}
             </Text>
             <Text className="text-slate-500 dark:text-slate-400 text-base font-normal leading-relaxed text-center mt-4 px-4">
-              Enter any amount of money and instantly see how much the 4×1000 tax will be.
+              {t("onboarding.subtitle")}
             </Text>
           </View>
 
           {/* Action Button */}
-          <PrimaryButton title="Continue" onPress={() => router.push("/(onboarding)/NameInputScreen")}>
+          <PrimaryButton
+            title={t("onboarding.continue")}
+            onPress={() => router.push("/(onboarding)/NameInputScreen")}
+          >
             <MaterialIcons name="arrow-forward" size={20} color="white" />
           </PrimaryButton>
 
           <Text className="mt-8 text-slate-300 text-[10px] font-medium uppercase tracking-widest">
-            Safe • Secure • Accurate
+            {t("onboarding.footer")}
           </Text>
         </GlassCard>
       </ScrollView>

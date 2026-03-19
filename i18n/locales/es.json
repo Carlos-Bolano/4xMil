@@ -1,0 +1,97 @@
+{
+  "common": {
+    "user": "Usuario",
+    "errorTitle": "Error"
+  },
+  "onboarding": {
+    "title": "Calcula el\n4×1000 en segundos",
+    "subtitle": "Ingresa cualquier monto y mira al instante cuánto será el impuesto del 4×1000.",
+    "continue": "Continuar",
+    "footer": "Seguro • Confiable • Preciso"
+  },
+  "nameInput": {
+    "title": "¿Cuál es tu nombre?",
+    "subtitle": "Empecemos tu camino con 4xMil.",
+    "inputLabel": "TU NOMBRE",
+    "placeholder": "Escribe tu nombre",
+    "continue": "Continuar",
+    "requiredTitle": "Requerido",
+    "requiredMessage": "Por favor escribe tu nombre para continuar."
+  },
+  "home": {
+    "greeting": "Hola {{name}}",
+    "subtitle": "Calcula tu 4×1000 fácilmente",
+    "calculatorTitle": "Calculadora 4×1000",
+    "amountLabel": "Monto a transferir",
+    "amountPlaceholder": "500.000",
+    "calculate": "Calcular",
+    "resultsTitle": "Resultados del cálculo",
+    "taxAmountTitle": "Impuesto (4×1000)",
+    "totalAmountTitle": "Monto total",
+    "share": "Compartir",
+    "copyTotal": "Copiar total",
+    "quickInfo": "El GMF (4×1000) es un impuesto en Colombia sobre movimientos financieros. Tarifa: $4 por cada $1.000.",
+    "viewInfo": "Ver información"
+  },
+  "information": {
+    "greeting": "Hola {{name}}",
+    "headerSubtitle": "Información del impuesto",
+    "title": "¿Qué es el 4×1000 (GMF)?",
+    "badge": "IMPUESTO EN COLOMBIA",
+    "sectionTitle": "Impuesto a Movimientos Financieros",
+    "description": "El 4×1000 (GMF) es un impuesto que se aplica a ciertas transacciones financieras en Colombia.\nPor cada $1.000 que se mueve, se cobran $4. Generalmente aplica a retiros y transferencias bancarias, con algunas exenciones.",
+    "calculateButton": "Calcular mi 4×1000",
+    "keyDetails": "Detalles clave",
+    "details": {
+      "autoDiscount": {
+        "title": "Descuento automático",
+        "description": "Los bancos lo descuentan automáticamente al momento de la transacción."
+      },
+      "exemptAccount": {
+        "title": "Cuenta exenta",
+        "description": "Puedes marcar una cuenta para exención, con un tope mensual definido por norma."
+      },
+      "transactionTypes": {
+        "title": "Tipos de transacción",
+        "description": "Suele aplicar a transferencias, retiros y otros movimientos dentro del sistema financiero."
+      },
+      "origin": {
+        "title": "Origen",
+        "description": "Nació en 1998 como una medida temporal (2×1000) y se mantuvo con ajustes."
+      }
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "profileTitle": "Perfil",
+    "changeNameLabel": "Cambiar nombre",
+    "setNameValue": "Asignar nombre",
+    "appearanceTitle": "Apariencia",
+    "darkModeLabel": "Modo oscuro",
+    "languageTitle": "Idioma",
+    "appLanguageLabel": "Idioma de la app",
+    "languages": {
+      "en": "Inglés",
+      "es": "Español"
+    },
+    "creditsTitle": "Créditos",
+    "createdBy": "Creado por",
+    "github": "GitHub",
+    "portfolio": "Portafolio",
+    "openLinkErrorTitle": "Error",
+    "openLinkErrorMessage": "No se pudo abrir el enlace.",
+    "versionInfo": "4xMil v{{version}} Compilación {{build}}",
+    "tagline": "Excelencia fintech"
+  },
+  "calc": {
+    "invalidAmountTitle": "Monto inválido",
+    "invalidAmountMessage": "Ingresa un monto válido mayor a 0.",
+    "shareMessage": "¡Hola! El cálculo de mi 4x1000 es: Monto: {{amount}} | Impuesto: {{tax}} | Total a transferir: {{total}}. Calculado con 4xMil App.",
+    "shareErrorTitle": "Error",
+    "shareErrorMessage": "No se pudo abrir el menú de compartir.",
+    "copiedTitle": "Copiado",
+    "copiedMessage": "El total fue copiado al portapapeles.",
+    "copyErrorTitle": "Error",
+    "copyErrorMessage": "No se pudo copiar al portapapeles."
+  }
+}
